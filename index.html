@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Крис — Дизайн карточек для маркетплейсов</title>
+    <meta name="description" content="Продающий и чистый дизайн инфографики и карточек товаров для маркетплейсов.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #1e1e1e;
+            --bg-card: #2a2a2a;
+            --accent: #b8442c;
+            --accent-hover: #9a3824;
+            --text-white: #ffffff;
+            --text-gray: #a0a0a0;
+            --text-dark: #1e1e1e;
+            --bg-light: #ffffff;
+            --border-light: #e5e5e5;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-gray);
+            font-size: 16px;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            color: var(--text-white);
+            line-height: 1.2;
+        }
+
+        h1 { font-size: 24px; font-weight: 900; margin-bottom: 16px; }
+        h2 { font-size: 24px; font-weight: 800; margin-bottom: 20px; }
+        h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+        h4 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+
+        p { margin-bottom: 12px; }
+
+        a { color: inherit; text-decoration: none; }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 50px 0;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 14px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            text-align: center;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--text-white);
+            border-color: var(--accent);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            border-color: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--accent);
+            color: var(--text-white);
+            transform: translateY(-2px);
+        }
+
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 40px;
+            padding-bottom: 50px;
+        }
+
+        .hero-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .hero-logo-img {
+            height: 64px;
+            width: auto;
+            flex-shrink: 0;
+        }
+
+        .hero-header-text {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .hero-header-sub {
+            font-size: 12px;
+            color: #777;
+            font-weight: 400;
+            line-height: 1.3;
+        }
+
+        .hero-header-tagline {
+            font-size: 14px;
+            color: var(--text-white);
+            font-weight: 500;
+            line-height: 1.3;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            margin-bottom: 32px;
+            color: var(--text-gray);
+            max-width: 500px;
+        }
+
+        .hero-buttons-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .hero-buttons-row .btn {
+            flex: 1;
+        }
+
+        /* Case Section */
+        .case-task {
+            font-size: 15px;
+            margin-bottom: 20px;
+            color: var(--text-gray);
+        }
+
+        .case-task strong {
+            color: var(--text-white);
+        }
+
+        .case-cover {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 12px;
+            background-color: var(--bg-card);
+            cursor: pointer;
+        }
+
+        .case-cover img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .case-slides {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .case-slides img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+            cursor: pointer;
+        }
+
+        .case-solution {
+            font-size: 15px;
+            margin-bottom: 8px;
+            color: var(--text-gray);
+        }
+
+        .case-solution strong {
+            color: var(--text-white);
+        }
+
+        .case-time {
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+
+        .case-time strong {
+            font-weight: 700;
+            color: var(--text-white);
+        }
+
+        .case-time .time-value {
+            font-weight: 400;
+            color: var(--text-gray);
+        }
+
+        /* Gallery Section */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .gallery-item {
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: var(--bg-card);
+            aspect-ratio: 3/4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 0 2px var(--accent), 0 8px 24px rgba(184, 68, 44, 0.3);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.03);
+        }
+
+        /* Light Block (white background full-width with rounded corners) */
+        .light-block-section {
+            background-color: var(--bg-light);
+            padding: 40px 0;
+            border-radius: 30px;
+        }
+
+        .light-block {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            color: var(--text-dark);
+        }
+
+        .light-block h2,
+        .light-block h3,
+        .light-block h4 {
+            color: var(--text-dark);
+        }
+
+        .light-block p {
+            color: #555555;
+        }
+
+        /* Pricing Cards */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .pricing-grid-top {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .price-card {
+            border: 2px solid var(--accent);
+            border-radius: 12px;
+            padding: 16px;
+        }
+
+        .price-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-light);
+            gap: 12px;
+        }
+
+        .price-card-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .price-card-price {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--accent);
+            white-space: nowrap;
+        }
+
+        .price-card-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .price-list {
+            list-style: none;
+        }
+
+        .price-list li {
+            font-size: 13px;
+            color: #555;
+            padding: 3px 0;
+            position: relative;
+            padding-left: 14px;
+        }
+
+        .price-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .price-info {
+            font-size: 13px;
+            padding-left: 80px;
+        }
+
+        .price-info-item {
+            margin-bottom: 6px;
+        }
+
+        .price-info-label {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .price-info-value {
+            color: #555;
+        }
+
+        .price-info-value.price-red {
+            color: var(--accent);
+            font-weight: 400;
+        }
+
+        .price-note {
+            text-align: center;
+            font-size: 13px;
+            color: #777;
+            margin: 20px 0;
+        }
+
+        .price-footer {
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+            margin-top: 20px;
+        }
+
+        .price-order-btn {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Steps Section */
+        .steps-subtitle {
+            font-size: 15px;
+            color: var(--text-gray);
+            margin-bottom: 24px;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .step-card {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 0 0 2px var(--accent);
+        }
+
+        .step-card-header {
+            background-color: var(--accent);
+            padding: 14px 18px;
+            color: var(--text-white);
+            font-size: 16px;
+        }
+
+        .step-card-header .step-number {
+            font-weight: 300;
+        }
+
+        .step-card-header .step-title {
+            font-weight: 700;
+        }
+
+        .step-card-body {
+            padding: 16px 18px;
+        }
+
+        .step-card-body p {
+            font-size: 14px;
+            color: var(--text-gray);
+            margin: 0;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            align-items: start;
+        }
+
+        .about-text p {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .about-text strong {
+            color: var(--text-dark);
+        }
+
+        .about-stats {
+            margin: 10px 0;
+        }
+
+        .about-stats-item {
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        .about-stats-label {
+            color: #777;
+        }
+
+        .about-stats-value {
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .tools {
+            display: flex;
+            gap: 8px;
+            margin: 10px 0;
+        }
+
+        .tool-badge {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background-color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .tool-badge img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-photo {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .about-photo img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .about-approach {
+            margin-top: 20px;
+        }
+
+        /* Contact Section */
+        .contact-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 30px 20px;
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+
+        footer a {
+            color: var(--text-gray);
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--accent);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            touch-action: none;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-img {
+            max-width: 95%;
+            max-height: 90%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10001;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 22px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10001;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .lightbox-prev {
+            left: 16px;
+        }
+
+        .lightbox-next {
+            right: 16px;
+        }
+
+        .lightbox-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 14px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+
+        /* Fade-in Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Desktop Styles */
+        @media (min-width: 768px) {
+            body { font-size: 18px; line-height: 1.6; }
+            h1 { font-size: 36px; }
+            h2 { font-size: 36px; }
+            h3 { font-size: 24px; }
+            
+            .hero-subtitle { font-size: 20px; }
+            
+            .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+
+            .light-block-section {
+                padding: 60px 0;
+            }
+
+            .about-text p {
+                font-size: 15px;
+            }
+
+            /* Desktop: steps 2x2 grid */
+            .steps-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            /* Desktop: contact buttons 1x3 */
+            .contact-buttons {
+                flex-direction: row;
+            }
+
+            .contact-buttons .btn {
+                flex: 1;
+            }
+
+            /* Desktop: pricing top 1x2 grid */
+            .pricing-grid-top {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            /* Desktop: price info shifted left */
+            .price-info {
+                padding-left: 0;
+                margin-left: -70px;
+            }
+
+            /* Desktop: price shifted left by 720px + 5px */
+            .price-card-price {
+                margin-right: -705px;
+            }
+
+            .price-card-header {
+                flex-wrap: wrap;
+            }
+
+            /* Desktop: header sub in one line */
+            .hero-header-sub {
+                white-space: nowrap;
+            }
+
+            /* Desktop: about approach margin top */
+            .about-approach {
+                margin-top: 40px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            h1 { font-size: 40px; }
+            h2 { font-size: 40px; }
+            
+            .hero { padding-top: 60px; }
+
+            .hero-header-sub {
+                font-size: 14px;
+            }
+
+            .hero-header-tagline {
+                font-size: 16px;
+            }
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 767px) {
+            .hero-header-sub {
+                font-size: 11px;
+            }
+
+            .hero-header-tagline {
+                font-size: 13px;
+            }
+
+            .price-card-price {
+                margin-right: -8px;
+            }
+
+            .tool-badge:last-child {
+                margin-left: 8px;
+            }
+
+            /* Gallery: reduce top padding */
+            #cases + section {
+                padding-top: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-header fade-in">
+                    <img src="images/logo.png" alt="Логотип K" class="hero-logo-img" onerror="this.outerHTML='<div class=\'hero-logo-img\' style=\'height:64px;width:64px;background:#333;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:300;font-size:40px;border:3px solid #fff;\'>K</div>'">
+                    <div class="hero-header-text">
+                        <span class="hero-header-sub">Дизайн для маркетплейсов Ozon и Wildberries</span>
+                        <span class="hero-header-tagline">Карточка, которая работает.<br>Без лишнего.</span>
+                    </div>
+                </div>
+                <h1 class="fade-in">Продающие карточки товаров<br>для маркетплейсов</h1>
+                <p class="hero-subtitle fade-in">Создаю инфографику, которая работает.<br>Без лишнего.</p>
+                <div class="hero-buttons-row fade-in">
+                    <a href="#cases" class="btn btn-outline">Портфолио</a>
+                    <a href="#pricing" class="btn btn-outline">Прайс</a>
+                </div>
+                <div class="fade-in">
+                    <a href="https://t.me/Mazurtin" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-block">Заказать дизайн</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cases Section -->
+        <section id="cases">
+            <div class="container">
+                <h2 class="fade-in">Кейсы и примеры работ</h2>
+                
+                <div class="case-item fade-in">
+                    <p class="case-task"><strong>Задача:</strong> Выделить карточку Омега-3 среди конкурентов, объяснить ценность сложного продукта за 3 секунды и снять страхи покупателей о качестве</p>
+                    
+                    <div class="case-cover" data-lightbox="case1">
+                        <img src="images/case1-cover.jpg" alt="Omega-3 + D3 обложка" loading="lazy" onerror="this.outerHTML=placeholderSVG(this, 375, 500, 'Обложка Омега-3')">
+                    </div>
+                    
+                    <div class="case-slides">
+                        <img src="images/case1-slide1.jpg" alt="Состав Омега-3" loading="lazy" data-lightbox="case1" onerror="this.outerHTML=placeholderSVG(this, 120, 160, 'Состав')">
+                        <img src="images/case1-slide2.jpg" alt="Чистый продукт" loading="lazy" data-lightbox="case1" onerror="this.outerHTML=placeholderSVG(this, 120, 160, 'Продукт')">
+                        <img src="images/case1-slide3.jpg" alt="Как принимать" loading="lazy" data-lightbox="case1" onerror="this.outerHTML=placeholderSVG(this, 120, 160, 'Приём')">
+                    </div>
+                    
+                    <p class="case-solution"><strong>Решение:</strong> Разбила состав на понятные выгоды (ЭПК для сердца, ДГК для мозга), визуально показала преимущества и сертификаты качества</p>
+                    <p class="case-time"><strong>Время на работу:</strong> <span class="time-value">5 часов</span></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section>
+            <div class="container">
+                <h2 class="fade-in">Примеры обложек</h2>
+                <div class="gallery-grid fade-in">
+                    <div class="gallery-item" data-lightbox="gallery">
+                        <img src="images/gallery1.jpg" alt="Майка - обложка" loading="lazy" onerror="this.outerHTML=placeholderSVG(this, 180, 240, 'Майка')">
+                    </div>
+                    <div class="gallery-item" data-lightbox="gallery">
+                        <img src="images/gallery2.jpg" alt="Зайка - обложка" loading="lazy" onerror="this.outerHTML=placeholderSVG(this, 180, 240, 'Зайка')">
+                    </div>
+                    <div class="gallery-item" data-lightbox="gallery">
+                        <img src="images/gallery3.jpg" alt="Гидравлический пресс - обложка" loading="lazy" onerror="this.outerHTML=placeholderSVG(this, 180, 240, 'Пресс')">
+                    </div>
+                    <div class="gallery-item" data-lightbox="gallery">
+                        <img src="images/gallery4.jpg" alt="D3 + K2 - обложка" loading="lazy" onerror="this.outerHTML=placeholderSVG(this, 180, 240, 'D3+K2')">
+                    </div>
+                    <div class="gallery-item" data-lightbox="gallery">
+                        <img src="images/gallery5.jpg" alt="Бамбуковый коврик - обложка" loading="lazy" onerror="this.outerHTML=placeholderSVG(this, 180, 240, 'Коврик')">
+                    </div>
+                    <div class="gallery-item" data-lightbox="gallery">
+                        <img src="images/gallery6.jpg" alt="Носочная пряжа - обложка" loading="lazy" onerror="this.outerHTML=placeholderSVG(this, 180, 240, 'Пряжа')">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section (white full-width) -->
+        <section id="pricing" class="light-block-section">
+            <div class="light-block">
+                <h2 class="fade-in">Стоимость работ</h2>
+                
+                <div class="pricing-grid-top fade-in">
+                    <div class="price-card">
+                        <div class="price-card-header">
+                            <div class="price-card-title">Обложка товара</div>
+                            <div class="price-card-price">800₽</div>
+                        </div>
+                        <div class="price-card-body">
+                            <ul class="price-list">
+                                <li>Анализ конкурентов</li>
+                                <li>Разработка дизайна</li>
+                                <li>Обработка фото</li>
+                                <li>Генерация изображений</li>
+                            </ul>
+                            <div class="price-info">
+                                <div class="price-info-item">
+                                    <span class="price-info-label">Срок:</span><br>
+                                    <span class="price-info-value">3 дня</span>
+                                </div>
+                                <div class="price-info-item">
+                                    <span class="price-info-label">Правки:</span><br>
+                                    <span class="price-info-value">2 круга</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="price-card">
+                        <div class="price-card-header">
+                            <div class="price-card-title">Другие слайды</div>
+                            <div class="price-card-price">600₽</div>
+                        </div>
+                        <div class="price-card-body">
+                            <ul class="price-list">
+                                <li>Анализ конкурентов</li>
+                                <li>Разработка дизайна</li>
+                                <li>Обработка фото</li>
+                                <li>Генерация изображений</li>
+                            </ul>
+                            <div class="price-info">
+                                <div class="price-info-item">
+                                    <span class="price-info-label">Срок:</span><br>
+                                    <span class="price-info-value">2 дня</span>
+                                </div>
+                                <div class="price-info-item">
+                                    <span class="price-info-label">Правки:</span><br>
+                                    <span class="price-info-value">2 круга</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="price-note fade-in">Стоимость указана за 1 изображение<br>при наличии технического задания от вас</p>
+
+                <div class="price-card fade-in" style="margin-bottom: 20px;">
+                    <div class="price-card-header">
+                        <div class="price-card-title">Дополнительные услуги</div>
+                    </div>
+                    <div class="price-card-body" style="grid-template-columns: 1fr auto;">
+                        <ul class="price-list">
+                            <li>Разработка ТЗ</li>
+                            <li>Замена цвета товара</li>
+                            <li>Нейрофотосессия</li>
+                        </ul>
+                        <div class="price-info" style="text-align: right; padding-left: 0; margin-left: 0;">
+                            <div class="price-info-item">
+                                <span class="price-info-value price-red">500₽</span>
+                            </div>
+                            <div class="price-info-item">
+                                <span class="price-info-value price-red">200₽</span>
+                            </div>
+                            <div class="price-info-item">
+                                <span class="price-info-value price-red">700₽</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="price-footer fade-in">
+                    <p>Работаю по договору<br>Предоплата 50%</p>
+                    <p>Скидки на большой объём работ</p>
+                </div>
+
+                <div class="price-order-btn fade-in">
+                    <a href="#contacts" class="btn btn-primary btn-block" style="max-width: 300px; margin: 0 auto;">Заказать</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Steps Section -->
+        <section>
+            <div class="container">
+                <h2 class="fade-in">Моя работа в 4 шагах</h2>
+                <p class="steps-subtitle fade-in">Работаю быстро, чётко и попадая в фирменную эстетику бренда</p>
+                
+                <div class="steps-grid">
+                    <div class="step-card fade-in">
+                        <div class="step-card-header">
+                            <span class="step-number">1 шаг: </span>
+                            <span class="step-title">Бриф и аудит</span>
+                        </div>
+                        <div class="step-card-body">
+                            <p>Вы заполняете краткий бриф: товар, УТП, ЦА, конкуренты. Я изучаю вашу нишу и формирую стратегию карточки исходя из ваших целей</p>
+                        </div>
+                    </div>
+
+                    <div class="step-card fade-in">
+                        <div class="step-card-header">
+                            <span class="step-number">2 шаг: </span>
+                            <span class="step-title">Концепция</span>
+                        </div>
+                        <div class="step-card-body">
+                            <p>Предлагаю структуру слайдов, визуальный стиль и компоновку. Согласовываем всё до первого макета, чтобы избежать лишних правок</p>
+                        </div>
+                    </div>
+
+                    <div class="step-card fade-in">
+                        <div class="step-card-header">
+                            <span class="step-number">3 шаг: </span>
+                            <span class="step-title">Дизайн макетов</span>
+                        </div>
+                        <div class="step-card-body">
+                            <p>Разрабатываю все изображения с учётом логики восприятия и требований маркетплейса</p>
+                        </div>
+                    </div>
+
+                    <div class="step-card fade-in">
+                        <div class="step-card-header">
+                            <span class="step-number">4 шаг: </span>
+                            <span class="step-title">Доработка и сдача</span>
+                        </div>
+                        <div class="step-card-body">
+                            <p>Передаю готовые макеты. В стоимость входит один круг правок для точечной шлифовки. Вы получаете готовые файлы</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About + Contact Section combined (white full-width) -->
+        <section id="contacts" class="light-block-section">
+            <div class="light-block">
+                <h2 class="fade-in">Точно сработаемся</h2>
+                
+                <div class="about-content fade-in">
+                    <div class="about-text">
+                        <p>Привет, меня зовут Крис, и я дизайнер</p>
+                        
+                        <div class="about-stats">
+                            <div class="about-stats-item">
+                                <span class="about-stats-label">Опыт работы: </span>
+                                <span class="about-stats-value">3 года</span>
+                            </div>
+                        </div>
+
+                        <p>Инструменты:</p>
+                        <div class="tools">
+                            <div class="tool-badge">
+                                <img src="images/tool-ps.png" alt="Photoshop" onerror="this.outerHTML=placeholderSVG(this, 40, 40, 'Ps')">
+                            </div>
+                            <div class="tool-badge">
+                                <img src="images/tool-ai.png" alt="Illustrator" onerror="this.outerHTML=placeholderSVG(this, 40, 40, 'Ai')">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-photo">
+                        <img src="images/about-photo.jpg" alt="Крис - дизайнер" loading="lazy" onerror="this.outerHTML=placeholderSVG(this, 260, 320, 'Фото Крис')">
+                    </div>
+                </div>
+
+                <div class="about-approach fade-in">
+                    <p>Я создаю дизайн, который решает <strong>задачи</strong> селлера. Мой подход строится на двух принципах: <strong>структура</strong> и <strong>скорость</strong></p>
+                    <p>Выстраиваю <strong>понятную логику</strong> презентации товара и сдаю проекты <strong>точно в срок</strong></p>
+                </div>
+
+                <h2 class="fade-in" style="margin-top: 40px;">Пишите — обсудим</h2>
+                
+                <div class="contact-buttons fade-in">
+                    <a href="https://t.me/Mazurtin" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Написать в Телеграм</a>
+                    <a href="https://vk.ru/mazurstudio" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Написать в ВК</a>
+                    <a href="https://t.me/kris_cards" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Канал в Телеграм</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Дизайн для маркетплейсов</p>
+        <p>© 2026</p>
+        <p><a href="https://tinkriskiss.github.io/portfolio-kris-mazur/" target="_blank" rel="noopener noreferrer">Разработано Крис Мазур</a></p>
+    </footer>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightbox-close" aria-label="Закрыть">×</button>
+        <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Предыдущее">‹</button>
+        <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Следующее">›</button>
+        <div class="lightbox-content">
+            <img src="" alt="" class="lightbox-img" id="lightbox-img">
+        </div>
+        <div class="lightbox-counter" id="lightbox-counter"></div>
+    </div>
+
+    <script>
+        function placeholderSVG(imgEl, w, h, label) {
+            var span = document.createElement('span');
+            span.style.cssText = 'display:block;background:#3a3a3a;color:#a0a0a0;font-size:13px;text-align:center;padding:20px;border-radius:8px;';
+            span.textContent = label + ' (' + w + '×' + h + ')';
+            if (imgEl.tagName === 'IMG') {
+                imgEl.replaceWith(span);
+            } else {
+                imgEl.parentNode.replaceChild(span, imgEl);
+            }
+            return span;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const faders = document.querySelectorAll('.fade-in');
+            
+            const appearOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const appearOnScroll = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                });
+            }, appearOptions);
+
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxClose = document.getElementById('lightbox-close');
+            const lightboxPrev = document.getElementById('lightbox-prev');
+            const lightboxNext = document.getElementById('lightbox-next');
+            const lightboxCounter = document.getElementById('lightbox-counter');
+            
+            let currentImages = [];
+            let currentIndex = 0;
+
+            const lightboxItems = document.querySelectorAll('[data-lightbox]');
+            const imageGroups = {};
+
+            lightboxItems.forEach(item => {
+                const group = item.getAttribute('data-lightbox');
+                const img = item.querySelector('img');
+                
+                if (!img) return;
+                
+                if (!imageGroups[group]) {
+                    imageGroups[group] = [];
+                }
+                
+                imageGroups[group].push(img.src);
+
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    currentImages = imageGroups[group];
+                    currentIndex = currentImages.indexOf(img.src);
+                    if (currentIndex === -1) currentIndex = 0;
+                    openLightbox(currentIndex);
+                });
+            });
+
+            function openLightbox(index) {
+                currentIndex = index;
+                updateLightboxImage();
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeLightbox() {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            function updateLightboxImage() {
+                lightboxImg.src = currentImages[currentIndex];
+                lightboxCounter.textContent = (currentIndex + 1) + ' / ' + currentImages.length;
+            }
+
+            function nextImage() {
+                currentIndex = (currentIndex + 1) % currentImages.length;
+                updateLightboxImage();
+            }
+
+            function prevImage() {
+                currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+                updateLightboxImage();
+            }
+
+            lightboxClose.addEventListener('click', closeLightbox);
+            lightboxNext.addEventListener('click', nextImage);
+            lightboxPrev.addEventListener('click', prevImage);
+
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox || e.target.classList.contains('lightbox-content')) {
+                    closeLightbox();
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (!lightbox.classList.contains('active')) return;
+                
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowRight') nextImage();
+                if (e.key === 'ArrowLeft') prevImage();
+            });
+
+            let touchStartX = 0;
+            let touchStartY = 0;
+            let touchEndX = 0;
+            let touchEndY = 0;
+            const minSwipeDistance = 50;
+
+            lightbox.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+                touchStartY = e.changedTouches[0].screenY;
+            }, { passive: true });
+
+            lightbox.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                touchEndY = e.changedTouches[0].screenY;
+                handleSwipe();
+            }, { passive: true });
+
+            function handleSwipe() {
+                const swipeX = touchEndX - touchStartX;
+                const swipeY = touchEndY - touchStartY;
+                const absX = Math.abs(swipeX);
+                const absY = Math.abs(swipeY);
+                
+                if (absY > absX && absY > minSwipeDistance) {
+                    closeLightbox();
+                    return;
+                }
+                
+                if (absX > absY && absX > minSwipeDistance) {
+                    if (swipeX > 0) {
+                        prevImage();
+                    } else {
+                        nextImage();
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
