@@ -160,10 +160,15 @@
             display: flex;
             gap: 12px;
             margin-bottom: 16px;
+            margin-top: 48px;
         }
 
         .hero-buttons-row .btn {
             flex: 1;
+        }
+
+        .hero-title-wrapper {
+            margin-top: 96px;
         }
 
         /* Case Section */
@@ -363,7 +368,6 @@
 
         .price-info {
             font-size: 13px;
-            padding-left: 80px;
         }
 
         .price-info-item {
@@ -391,7 +395,14 @@
             margin: 20px 0;
         }
 
-        .price-footer {
+        .price-contract {
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .price-discount {
             text-align: center;
             font-size: 14px;
             color: #555;
@@ -400,7 +411,6 @@
 
         .price-order-btn {
             text-align: center;
-            margin-top: 20px;
         }
 
         /* Steps Section */
@@ -452,8 +462,33 @@
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
+            grid-template-areas: 
+                "text photo"
+                "approach photo";
             gap: 20px;
             align-items: start;
+        }
+
+        .about-text {
+            grid-area: text;
+        }
+
+        .about-photo {
+            grid-area: photo;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .about-photo img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .about-approach-text {
+            grid-area: approach;
+            margin-top: 26px;
         }
 
         .about-text p {
@@ -507,22 +542,6 @@
             object-fit: cover;
         }
 
-        .about-photo {
-            width: 100%;
-            border-radius: 12px;
-            overflow: hidden;
-        }
-
-        .about-photo img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .about-approach {
-            margin-top: 20px;
-        }
-
         /* Contact Section */
         .contact-buttons {
             display: flex;
@@ -539,13 +558,13 @@
             color: var(--text-gray);
         }
 
-        footer a {
-            color: var(--text-gray);
+        footer .red-link {
+            color: var(--accent);
             transition: color 0.3s ease;
         }
 
-        footer a:hover {
-            color: var(--accent);
+        footer .red-link:hover {
+            color: var(--accent-hover);
         }
 
         /* Lightbox */
@@ -697,19 +716,13 @@
                 grid-template-columns: 1fr 1fr;
             }
 
-            /* Desktop: price info shifted left */
+            /* Desktop: price info aligned properly */
             .price-info {
-                padding-left: 0;
-                margin-left: -70px;
+                text-align: right;
             }
 
-            /* Desktop: price shifted left by 720px + 5px */
-            .price-card-price {
-                margin-right: -705px;
-            }
-
-            .price-card-header {
-                flex-wrap: wrap;
+            .price-info-label {
+                display: block;
             }
 
             /* Desktop: header sub in one line */
@@ -717,9 +730,15 @@
                 white-space: nowrap;
             }
 
-            /* Desktop: about approach margin top */
-            .about-approach {
-                margin-top: 40px;
+            /* Gallery: move up by 30px on desktop */
+            #cases + section {
+                margin-top: -30px;
+                padding-top: 0;
+            }
+
+            /* Desktop: about approach margin */
+            .about-approach-text {
+                margin-top: 26px;
             }
         }
 
@@ -748,17 +767,88 @@
                 font-size: 13px;
             }
 
-            .price-card-price {
-                margin-right: -8px;
-            }
-
             .tool-badge:last-child {
                 margin-left: 8px;
             }
 
-            /* Gallery: reduce top padding */
+            /* Mobile: narrow content by 5px on each side */
+            .container {
+                padding: 0 15px;
+            }
+
+            /* Gallery: move up by 30px on mobile too */
             #cases + section {
-                padding-top: 30px;
+                margin-top: -30px;
+                padding-top: 0;
+            }
+
+            /* Mobile: about content 1x2 grid, approach text below full width */
+            .about-content {
+                grid-template-columns: 1fr 1fr;
+                grid-template-areas: 
+                    "text photo"
+                    "approach approach";
+            }
+
+            .about-approach-text {
+                margin-top: 0;
+            }
+
+            /* Mobile: price cards stacked */
+            .pricing-grid-top {
+                grid-template-columns: 1fr;
+            }
+
+            .price-card-body {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .price-info {
+                text-align: left;
+            }
+
+            .price-info-label {
+                display: inline;
+            }
+
+            .price-info-item {
+                display: inline-block;
+                margin-right: 20px;
+            }
+
+            /* Mobile: additional services - prices next to each item */
+            .additional-services .price-card-body {
+                grid-template-columns: 1fr;
+            }
+
+            .additional-services .price-info-desktop {
+                display: none;
+            }
+
+            .additional-services .price-list li {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 6px 0;
+            }
+
+            .additional-services .price-list li .service-price {
+                color: var(--accent);
+                font-weight: 400;
+                font-size: 13px;
+                white-space: nowrap;
+                margin-left: 12px;
+            }
+
+            .additional-services .price-list li::before {
+                position: static;
+                margin-right: 8px;
+                flex-shrink: 0;
+            }
+
+            .additional-services .price-list li .service-name {
+                flex: 1;
             }
         }
     </style>
@@ -776,8 +866,10 @@
                         <span class="hero-header-tagline">Карточка, которая работает.<br>Без лишнего.</span>
                     </div>
                 </div>
-                <h1 class="fade-in">Продающие карточки товаров<br>для маркетплейсов</h1>
-                <p class="hero-subtitle fade-in">Создаю инфографику, которая работает.<br>Без лишнего.</p>
+                <div class="hero-title-wrapper">
+                    <h1 class="fade-in">Продающие карточки товаров<br>для маркетплейсов</h1>
+                </div>
+                <p class="hero-subtitle fade-in">Разработка дизайна карточек товаров<br>с инфографикой под ключ: от анализа конкурентов<br>до готовых карточек на WB и Ozon</p>
                 <div class="hero-buttons-row fade-in">
                     <a href="#cases" class="btn btn-outline">Портфолио</a>
                     <a href="#pricing" class="btn btn-outline">Прайс</a>
@@ -796,14 +888,14 @@
                 <div class="case-item fade-in">
                     <p class="case-task"><strong>Задача:</strong> Выделить карточку Омега-3 среди конкурентов, объяснить ценность сложного продукта за 3 секунды и снять страхи покупателей о качестве</p>
                     
-                    <div class="case-cover" data-lightbox="case1">
-                        <img src="images/case1-cover.jpg" alt="Omega-3 + D3 обложка" loading="lazy" onerror="this.outerHTML=placeholderSVG(this, 375, 500, 'Обложка Омега-3')">
+                    <div class="case-cover" data-lightbox="case1" data-src="images/case1-cover.jpg">
+                        <img src="images/case1-cover.jpg" alt="Omega-3 + D3 обложка" loading="lazy">
                     </div>
                     
                     <div class="case-slides">
-                        <img src="images/case1-slide1.jpg" alt="Состав Омега-3" loading="lazy" data-lightbox="case1" onerror="this.outerHTML=placeholderSVG(this, 120, 160, 'Состав')">
-                        <img src="images/case1-slide2.jpg" alt="Чистый продукт" loading="lazy" data-lightbox="case1" onerror="this.outerHTML=placeholderSVG(this, 120, 160, 'Продукт')">
-                        <img src="images/case1-slide3.jpg" alt="Как принимать" loading="lazy" data-lightbox="case1" onerror="this.outerHTML=placeholderSVG(this, 120, 160, 'Приём')">
+                        <img src="images/case1-slide1.jpg" alt="Состав Омега-3" loading="lazy" data-lightbox="case1" data-src="images/case1-slide1.jpg">
+                        <img src="images/case1-slide2.jpg" alt="Чистый продукт" loading="lazy" data-lightbox="case1" data-src="images/case1-slide2.jpg">
+                        <img src="images/case1-slide3.jpg" alt="Как принимать" loading="lazy" data-lightbox="case1" data-src="images/case1-slide3.jpg">
                     </div>
                     
                     <p class="case-solution"><strong>Решение:</strong> Разбила состав на понятные выгоды (ЭПК для сердца, ДГК для мозга), визуально показала преимущества и сертификаты качества</p>
@@ -817,23 +909,23 @@
             <div class="container">
                 <h2 class="fade-in">Примеры обложек</h2>
                 <div class="gallery-grid fade-in">
-                    <div class="gallery-item" data-lightbox="gallery">
-                        <img src="images/gallery1.jpg" alt="Майка - обложка" loading="lazy" onerror="this.outerHTML=placeholderSVG(this, 180, 240, 'Майка')">
+                    <div class="gallery-item" data-lightbox="gallery" data-src="images/gallery1.jpg">
+                        <img src="images/gallery1.jpg" alt="Майка - обложка" loading="lazy">
                     </div>
-                    <div class="gallery-item" data-lightbox="gallery">
-                        <img src="images/gallery2.jpg" alt="Зайка - обложка" loading="lazy" onerror="this.outerHTML=placeholderSVG(this, 180, 240, 'Зайка')">
+                    <div class="gallery-item" data-lightbox="gallery" data-src="images/gallery2.jpg">
+                        <img src="images/gallery2.jpg" alt="Зайка - обложка" loading="lazy">
                     </div>
-                    <div class="gallery-item" data-lightbox="gallery">
-                        <img src="images/gallery3.jpg" alt="Гидравлический пресс - обложка" loading="lazy" onerror="this.outerHTML=placeholderSVG(this, 180, 240, 'Пресс')">
+                    <div class="gallery-item" data-lightbox="gallery" data-src="images/gallery3.jpg">
+                        <img src="images/gallery3.jpg" alt="Гидравлический пресс - обложка" loading="lazy">
                     </div>
-                    <div class="gallery-item" data-lightbox="gallery">
-                        <img src="images/gallery4.jpg" alt="D3 + K2 - обложка" loading="lazy" onerror="this.outerHTML=placeholderSVG(this, 180, 240, 'D3+K2')">
+                    <div class="gallery-item" data-lightbox="gallery" data-src="images/gallery4.jpg">
+                        <img src="images/gallery4.jpg" alt="D3 + K2 - обложка" loading="lazy">
                     </div>
-                    <div class="gallery-item" data-lightbox="gallery">
-                        <img src="images/gallery5.jpg" alt="Бамбуковый коврик - обложка" loading="lazy" onerror="this.outerHTML=placeholderSVG(this, 180, 240, 'Коврик')">
+                    <div class="gallery-item" data-lightbox="gallery" data-src="images/gallery5.jpg">
+                        <img src="images/gallery5.jpg" alt="Бамбуковый коврик - обложка" loading="lazy">
                     </div>
-                    <div class="gallery-item" data-lightbox="gallery">
-                        <img src="images/gallery6.jpg" alt="Носочная пряжа - обложка" loading="lazy" onerror="this.outerHTML=placeholderSVG(this, 180, 240, 'Пряжа')">
+                    <div class="gallery-item" data-lightbox="gallery" data-src="images/gallery6.jpg">
+                        <img src="images/gallery6.jpg" alt="Носочная пряжа - обложка" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -859,11 +951,11 @@
                             </ul>
                             <div class="price-info">
                                 <div class="price-info-item">
-                                    <span class="price-info-label">Срок:</span><br>
+                                    <span class="price-info-label">Срок:</span>
                                     <span class="price-info-value">3 дня</span>
                                 </div>
                                 <div class="price-info-item">
-                                    <span class="price-info-label">Правки:</span><br>
+                                    <span class="price-info-label">Правки:</span>
                                     <span class="price-info-value">2 круга</span>
                                 </div>
                             </div>
@@ -884,11 +976,11 @@
                             </ul>
                             <div class="price-info">
                                 <div class="price-info-item">
-                                    <span class="price-info-label">Срок:</span><br>
+                                    <span class="price-info-label">Срок:</span>
                                     <span class="price-info-value">2 дня</span>
                                 </div>
                                 <div class="price-info-item">
-                                    <span class="price-info-label">Правки:</span><br>
+                                    <span class="price-info-label">Правки:</span>
                                     <span class="price-info-value">2 круга</span>
                                 </div>
                             </div>
@@ -898,17 +990,17 @@
 
                 <p class="price-note fade-in">Стоимость указана за 1 изображение<br>при наличии технического задания от вас</p>
 
-                <div class="price-card fade-in" style="margin-bottom: 20px;">
+                <div class="price-card additional-services fade-in" style="margin-bottom: 20px;">
                     <div class="price-card-header">
                         <div class="price-card-title">Дополнительные услуги</div>
                     </div>
-                    <div class="price-card-body" style="grid-template-columns: 1fr auto;">
+                    <div class="price-card-body">
                         <ul class="price-list">
-                            <li>Разработка ТЗ</li>
-                            <li>Замена цвета товара</li>
-                            <li>Нейрофотосессия</li>
+                            <li><span class="service-name">Разработка ТЗ</span><span class="service-price">500₽</span></li>
+                            <li><span class="service-name">Замена цвета товара</span><span class="service-price">200₽</span></li>
+                            <li><span class="service-name">Нейрофотосессия</span><span class="service-price">700₽</span></li>
                         </ul>
-                        <div class="price-info" style="text-align: right; padding-left: 0; margin-left: 0;">
+                        <div class="price-info price-info-desktop" style="text-align: right; padding-left: 0; margin-left: 0;">
                             <div class="price-info-item">
                                 <span class="price-info-value price-red">500₽</span>
                             </div>
@@ -922,13 +1014,16 @@
                     </div>
                 </div>
 
-                <div class="price-footer fade-in">
+                <div class="price-contract fade-in">
                     <p>Работаю по договору<br>Предоплата 50%</p>
-                    <p>Скидки на большой объём работ</p>
                 </div>
 
                 <div class="price-order-btn fade-in">
                     <a href="#contacts" class="btn btn-primary btn-block" style="max-width: 300px; margin: 0 auto;">Заказать</a>
+                </div>
+
+                <div class="price-discount fade-in">
+                    <p>Скидки на большой объём работ</p>
                 </div>
             </div>
         </section>
@@ -1012,11 +1107,10 @@
                     <div class="about-photo">
                         <img src="images/about-photo.jpg" alt="Крис - дизайнер" loading="lazy" onerror="this.outerHTML=placeholderSVG(this, 260, 320, 'Фото Крис')">
                     </div>
-                </div>
-
-                <div class="about-approach fade-in">
-                    <p>Я создаю дизайн, который решает <strong>задачи</strong> селлера. Мой подход строится на двух принципах: <strong>структура</strong> и <strong>скорость</strong></p>
-                    <p>Выстраиваю <strong>понятную логику</strong> презентации товара и сдаю проекты <strong>точно в срок</strong></p>
+                    <div class="about-approach-text">
+                        <p>Я создаю дизайн, который решает <strong>задачи</strong> селлера. Мой подход строится на двух принципах: <strong>структура</strong> и <strong>скорость</strong></p>
+                        <p>Выстраиваю <strong>понятную логику</strong> презентации товара и сдаю проекты <strong>точно в срок</strong></p>
+                    </div>
                 </div>
 
                 <h2 class="fade-in" style="margin-top: 40px;">Пишите — обсудим</h2>
@@ -1032,8 +1126,7 @@
 
     <footer>
         <p>Дизайн для маркетплейсов</p>
-        <p>© 2026</p>
-        <p><a href="https://tinkriskiss.github.io/portfolio-kris-mazur/" target="_blank" rel="noopener noreferrer">Разработано Крис Мазур</a></p>
+        <p><a href="https://tinkriskiss.github.io/portfolio-kris-mazur/" target="_blank" rel="noopener noreferrer" class="red-link">Разработано Крис Мазур</a> © 2026</p>
     </footer>
 
     <!-- Lightbox -->
@@ -1095,20 +1188,20 @@
 
             lightboxItems.forEach(item => {
                 const group = item.getAttribute('data-lightbox');
-                const img = item.querySelector('img');
+                const src = item.getAttribute('data-src');
                 
-                if (!img) return;
+                if (!src) return;
                 
                 if (!imageGroups[group]) {
                     imageGroups[group] = [];
                 }
                 
-                imageGroups[group].push(img.src);
+                imageGroups[group].push(src);
 
                 item.addEventListener('click', (e) => {
                     e.preventDefault();
                     currentImages = imageGroups[group];
-                    currentIndex = currentImages.indexOf(img.src);
+                    currentIndex = currentImages.indexOf(src);
                     if (currentIndex === -1) currentIndex = 0;
                     openLightbox(currentIndex);
                 });
